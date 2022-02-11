@@ -10,21 +10,64 @@ package com.mycompany.skck;
  */
 public class skck extends javax.swing.JFrame {
     
-    skckMain SM = new skckMain();
+//    skckMain SM = new skckMain();
+    private static String nama, tempatLahir, tanggalLahir, negara, kelamin;
+
+    public static String getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public static void setTanggalLahir(String tanggalLahir) {
+        skck.tanggalLahir = tanggalLahir;
+    }
+
+    public static String getNegara() {
+        return negara;
+    }
+
+    public static void setNegara(String negara) {
+        skck.negara = negara;
+    }
+
+    public static String getKelamin() {
+        return kelamin;
+    }
+
+    public static void setKelamin(String kelamin) {
+        skck.kelamin = kelamin;
+    }
+
+    public static String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public static void setTempatLahir(String tempatLahir) {
+        skck.tempatLahir = tempatLahir;
+    }
+    
+    public static void setNama(String nama){
+        skck.nama = nama;
+    }
+    public static String getNama(){
+        return nama;
+    }
+    
+    
+    
+    
+    
     /**
      * Creates new form skck
      */
     public skck() {
         initComponents();
     }
-    public void DataDiri(){
-        String nama = jTextField1.getText();
+    public void dataSkck(){
+        nama = jTextField1.getText();
         String pekerjaan = jTextField4.getText();
         String tempatLahir = jTextField2.getText();
         String tanggalLahir = jTextField3.getText();
         String agama = jTextField5.getText();
-        String tinggi = jTextField7.getText();
-        String berat = jTextField6.getText();
         String negara = "";
         String kelamin = "";
         
@@ -40,10 +83,13 @@ public class skck extends javax.swing.JFrame {
             kelamin = "Perempuan";
         }
         
-        SM.getSkck(nama, pekerjaan, tempatLahir, tanggalLahir, agama, negara, kelamin);
-        SM.setVisible(true);
+        
+        skck.setNama(nama);
+        
+        new skckMain().setVisible(true);
         this.dispose();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +105,8 @@ public class skck extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        jSeparator4 = new javax.swing.JSeparator();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -117,7 +165,6 @@ public class skck extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
         jLabel30 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -145,6 +192,7 @@ public class skck extends javax.swing.JFrame {
         jTextField23 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jTextField24 = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
 
         jLabel3.setText("jLabel3");
 
@@ -202,9 +250,9 @@ public class skck extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("B. Ciri Fisik");
 
-        jLabel12.setText("Berat");
+        jLabel12.setText("Berat Badan");
 
-        jLabel13.setText("Tinggi");
+        jLabel13.setText(" Tinggi Badan");
 
         jButton2.setText("Kirim Data");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +344,7 @@ public class skck extends javax.swing.JFrame {
 
         jLabel25.setText("Umur");
 
+        buttonGroup4.add(wni2);
         wni2.setText("WNI");
         wni2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +352,7 @@ public class skck extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup4.add(wna2);
         wna2.setText("WNA");
 
         jLabel27.setText("Kewarganegaraan");
@@ -326,7 +376,7 @@ public class skck extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel30.setText("D. Pendidikan");
 
-        jLabel26.setText("Tingkat Pendidikan");
+        jLabel26.setText("Pendidikan Terkahir");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih..", "SD/Sederajat", "SMP/Sederajat", "SMA/Sederajat" }));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -335,9 +385,9 @@ public class skck extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setText("Nama Sekolah");
+        jLabel31.setText("Nama Sekolah / Universitas");
 
-        jLabel32.setText("Tahun");
+        jLabel32.setText("Tahun Kelulusan");
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setText("E. Satuan Wilayah");
@@ -517,16 +567,11 @@ public class skck extends javax.swing.JFrame {
                                                 .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jTextField13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(wni2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(wna2))
-                            .addComponent(jLabel27))
-                        .addGap(118, 118, 118))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(wni2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(wna2)
+                        .addGap(180, 180, 180))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
@@ -567,16 +612,19 @@ public class skck extends javax.swing.JFrame {
                                         .addComponent(wna1))
                                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20)
-                                    .addComponent(jLabel22))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel22)
+                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel27))))
+                        .addContainerGap(99, Short.MAX_VALUE))))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator3)
-            .addComponent(jSeparator4)
             .addComponent(jSeparator5)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
+            .addComponent(jSeparator6)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -624,7 +672,6 @@ public class skck extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lakilaki)
                             .addComponent(perempuan))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel11)
@@ -682,31 +729,31 @@ public class skck extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel24)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel28)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wni2)
-                            .addComponent(wna2))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(wna2)
+                            .addComponent(wni2))))
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel30)
                 .addGap(18, 18, 18)
@@ -775,7 +822,7 @@ public class skck extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel41)
                         .addGap(29, 29, 29)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -792,7 +839,7 @@ public class skck extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1326, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
 
         pack();
@@ -848,7 +895,8 @@ public class skck extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        DataDiri();
+        dataSkck();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void lakilakiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lakilakiActionPerformed
@@ -930,6 +978,7 @@ public class skck extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -986,6 +1035,7 @@ public class skck extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
